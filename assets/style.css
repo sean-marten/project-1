@@ -9,3 +9,17 @@ UI Styling
     z-index: -1;
     opacity: 0.4;
   }
+
+  .input-btn {
+    margin-top: 15px !important;
+    height: 50px !important;
+  }
+
+  .input {
+    background-color: white !important;
+  }
+
+  .card {
+    margin-top: 20px;
+    display: none;
+  }
