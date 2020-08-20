@@ -3,16 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
+    <link rel="stylesheet" href="./assets/reset.css" />
     <link
       href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="./assets/style.css" />
+=======
+>>>>>>> staging-1
     <title>Document</title>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet"/>
+    <!--Dependencies-->
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   </head>
+
   <body>
-    <label class="mdc-text-field mdc-text-field--outlined">
-        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
+    <div class="container">
+      <img
+        class="background-image"
+        src="./assets/pictures/movie-background.jpg"
+        alt="Movie background"
+      />
+      <label class="mdc-text-field mdc-text-field--outlined">
+        <input
+          type="text"
+          class="mdc-text-field__input"
+          aria-labelledby="my-label-id"
+        />
         <span class="mdc-notched-outline">
           <span class="mdc-notched-outline__leading"></span>
           <span class="mdc-notched-outline__notch">
@@ -20,10 +46,68 @@
           </span>
           <span class="mdc-notched-outline__trailing"></span>
         </span>
-      </label>
+    </label>
+
     <button class="mdc-button mdc-button--raised">
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label search">Search</span>
-      </button>
+    </button>
+
+    <div class="container">
+      <h4 class="text-center py-4">Top Rated Movies</h4>
+      <div class="row">
+        <!--Card One-->
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <div class="view">
+            <img class="card-img-top" alt="photo">
+            <a href="#">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+            </div>
+            <div class="card-body elegant-color white-text">
+              <h4 class="card-title">Movie Name</h4>
+              <p class="card-text white-text">Movie Snapshot</p>
+            </div>
+          </div>
+        </div>
+        <!--Card Two-->
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <div class="view">
+            <img class="card-img-top" alt="photo">
+            <a href="#">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+            </div>
+            <div class="card-body elegant-color white-text">
+              <h4 class="card-title">Movie Name</h4>
+              <p class="card-text white-text">Movie Snapshot</p>
+            </div>
+          </div>
+        </div>
+        <!--Card Three-->
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <div class="view">
+            <img class="card-img-top" alt="photo">
+            <a href="#">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+            </div>
+            <div class="card-body elegant-color white-text">
+              <h4 class="card-title">Movie Name</h4>
+              <p class="card-text white-text">Movie Snapshot</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Footer-->
+    <footer class="container">
+      <p>&copy; Projectx 2020</p>
+    </footer>
   </body>
 </html>
+
