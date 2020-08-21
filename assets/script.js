@@ -2,7 +2,7 @@ $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
 
-  $(document).on("click", ".search", function () {
+  $(document).on("click", ".btn", function () {
     console.log("here");
 
     personSearch = $(".input").val();
@@ -45,18 +45,23 @@ $(document).ready(function () {
     function getBioData(personID) {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
-        //grabbing info for bio section, we can uncomment once we link to the HTML elements, Still need to figure out the picture
-        // const actorName = $('').text(response.name)
-        // const actorBirthday = $('').text(response.birthday)
-        // const actorKnownFor = $('').text(response.known_for_department)
-        // const actorBirthplace = $('').text(response.place_of_birth)
+        // grabbing info for bio section
+        const actorName = $('<h4>').text(response.name)
+        const actorBirthday = $('<p>').text('Birthday: ' + response.birthday)
+        const actorBirthplace = $('<p>').text('Birthplace: ' + response.place_of_birth)
+        const actorKnownFor = $('<p>').text('Known for: ' + response.known_for_department)
 
         // the 'w' in the url below indicates the size of the image
-        const actorImage = $("<img>").attr(
+        const actorImage = $('<img>').attr(
           "src",
           "https://image.tmdb.org/t/p/w500/" + response.profile_path
         );
-        // $('body').append(actorImage)
+        // dynamically append data to page
+        $('.bio-img').append(actorImage);
+        $('.card-bio').append(actorName);
+        $('.card-bio').append(actorBirthday);
+        $('.card-bio').append(actorBirthplace);
+        $('.card-bio').append(actorKnownFor);
       });
     }
   }
