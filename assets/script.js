@@ -64,10 +64,7 @@ $(document).ready(function () {
         ).addClass('card-img-top');
         // dynamically append data to page
         $('.card-img').append(actorImage);
-        $('.card-bio').append(actorName);
-        $('.card-bio').append(actorBirthday);
-        $('.card-bio').append(actorBirthplace);
-        $('.card-bio').append(actorKnownFor);
+        $('.card-bio').append(actorName, actorBirthday, actorBirthplace, actorKnownFor);
       });
     }
   }
