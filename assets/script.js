@@ -46,16 +46,16 @@ $(document).ready(function () {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
         // grabbing info for bio section
-        const actorName = $('<h4>').text(response.name)
-        const actorBirthday = $('<p>').text('Birthday: ' + response.birthday)
-        const actorBirthplace = $('<p>').text('Birthplace: ' + response.place_of_birth)
-        const actorKnownFor = $('<p>').text('Known for: ' + response.known_for_department)
+        const actorName = $('<h4>').text(response.name).addClass('card-title')
+        const actorBirthday = $('<p>').text('Birthday: ' + response.birthday).addClass('card-text')
+        const actorBirthplace = $('<p>').text('Birthplace: ' + response.place_of_birth).addClass('card-text')
+        const actorKnownFor = $('<p>').text('Known for: ' + response.known_for_department).addClass('card-text')
 
         // the 'w' in the url below indicates the size of the image
         const actorImage = $('<img>').attr(
           "src",
           "https://image.tmdb.org/t/p/w500/" + response.profile_path
-        );
+        ).addClass('card-img-top');
         // dynamically append data to page
         $('.bio-img').append(actorImage);
         $('.card-bio').append(actorName);
