@@ -59,9 +59,10 @@ $(document).ready(function () {
         const actorKnownFor = $('<p>').text('Known for: ' + response.known_for_department).addClass('card-text')
         // the 'w' in the url below indicates the size of the image
         const actorImage = $('<img>').attr(
-          "src",
-          "https://image.tmdb.org/t/p/w500/" + response.profile_path
-        ).addClass('card-img-top');
+        'src', 
+        'https://image.tmdb.org/t/p/w500/' + response.profile_path).attr(
+        'alt', 
+        'Actor Image').addClass('card-img-top');
         // dynamically append data to page
         $('.card-img').append(actorImage);
         $('.card-bio').append(actorName, actorBirthday, actorBirthplace, actorKnownFor);
