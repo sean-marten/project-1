@@ -2,7 +2,7 @@ $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
 
-  $(document).on("click", ".btn", function () {
+  $(document).on("click", ".search", function () {
     console.log("here");
 
     personSearch = $(".input").val();
