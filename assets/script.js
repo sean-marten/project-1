@@ -14,7 +14,6 @@ $(document).ready(function () {
     let tmdbPersonID = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApi}&language=en-US&query=${personSearch}`;
 
     $.get(tmdbPersonID, function (response) {
-      console.log(response);
       const personID = response.results[0].id;
       getMovieData(personID);
       getBioData(personID);
@@ -29,7 +28,6 @@ $(document).ready(function () {
           .sort((a, b) => {
             return b.vote_average - a.vote_average;
           }).slice(0, 3);
-          console.log(sortRating)
         //looping through the sorted movies, creating cards with info
         $.each(sortRating, function (index) {
           const cardContainer = $('<div>').addClass('col-lg-4 col-md-6')
