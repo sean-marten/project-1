@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Google Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -19,34 +24,61 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/style.css" />
+    <title>Actor Search</title>
   </head>
 
   <body>
-      <img
-        class="background-image"
-        src="./assets/pictures/movie-background.jpg"
-        alt="Movie background"
-      />
-      <label class="mdc-text-field mdc-text-field--outlined">
-        <input
-          type="text"
-          class="mdc-text-field__input"
-          aria-labelledby="my-label-id"
-        />
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="my-label-id"></span>
-          </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-    </label>
-
-    <button class="mdc-button mdc-button--raised">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label search">Search</span>
-    </button>
-
+    <img
+      class="background-image"
+      src="./assets/pictures/movie-background.jpg"
+      alt="Movie background"
+    />
+    <div class="container">
+      <div class="row">
+        <div class="md-form input-group mb-3 col-lg-4 col-xs-6">
+          <input
+            type="text"
+            class="form-control input-btn input"
+            placeholder="Actor/Actress name"
+            aria-label="Actor/Actress name"
+            aria-describedby="MaterialButton-addon2"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-md btn-secondary m-0 px-3 input-btn"
+              type="button"
+              id="MaterialButton-addon2"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <!-- Grid column -->
+        <div class="col-lg-6 col-xs-6">
+          <!--Card-->
+          <div class="card bio">
+            <!--Card image-->
+            <div class="view">
+              <img src="" class="card-img-top" alt="Actor image" />
+              <a href="#">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--Card content-->
+            <div class="card-body">
+              <!--Title-->
+              <h4 class="card-title">Actor Name</h4>
+              <!--Text-->
+              <p class="card-text">Actor birthday</p>
+              <p class="card-text">Birthplace</p>
+              <p class="card-text">Known for department</p>
+            </div>
+          </div>
+          <!--/.Card-->
+        </div>
+      </div>
+    </div>
     <div class="container">
 
       <h4 class="text-center py-4">Top Rated Movies</h4>
