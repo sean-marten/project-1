@@ -9,8 +9,9 @@ body {
   height: 100%;
 }
 
-p, h2 {
-  font-family: 'Bree Serif', serif;
+p,
+h2 {
+  font-family: "Bree Serif", serif;
 }
 
 .background-image {
