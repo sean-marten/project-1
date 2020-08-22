@@ -14,7 +14,9 @@ $(document).ready(function () {
     let tmdbPersonID = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApi}&language=en-US&query=${personSearch}`;
 
     $.get(tmdbPersonID, function (response) {
+      
       const personID = response.results[0].id;
+      console.log(personID)
       getMovieData(personID);
       getBioData(personID);
     });
@@ -24,10 +26,17 @@ $(document).ready(function () {
 
       $.get(tmdbMovies, function (response) {
         const movieArray = response.cast;
-        const sortRating = movieArray
+        const sortedMovieArray = [];
+        $.each(movieArray, function(index){
+          if(!movieArray[index].character.includes('Himself') && !movieArray[index].character.includes('Herself')){
+          sortedMovieArray.push(movieArray[index])
+        } 
+      })        
+        const sortRating = sortedMovieArray
           .sort((a, b) => {
-            return b.vote_average - a.vote_average;
+            return b.popularity - a.popularity;
           }).slice(0, 3);
+          console.log(sortRating)
         //looping through the sorted movies, creating cards with info
         $.each(sortRating, function (index) {
           const cardContainer = $('<div>').addClass('col-lg-4 col-md-6')
