@@ -115,7 +115,7 @@ $(document).ready(function () {
         $(".card-body").css({
           // Leaving room for color theme
           "text-align": "center",
-        })
+        });
       });
     }
   }
