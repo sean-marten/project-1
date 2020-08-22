@@ -30,3 +30,13 @@ body {
   margin-top: 20px;
   display: none;
 }
+
+
+#site-footer {
+  background-color: darkslategrey ;
+  max-width: 100%;
+  overflow-x: hidden; 
+  position: relative;
+  color: black;
+  }
+
