@@ -42,38 +42,52 @@ $(document).ready(function () {
           .slice(0, 3);
         console.log(sortRating);
         //looping through the sorted movies, creating cards with info
+        const movieTitleArr = [];
         $.each(sortRating, function (index) {
-          const cardContainer = $("<div>").addClass("col-lg-4 col-md-6");
-          const createCard = $("<div>").addClass("card");
-          const cardImgContainer = $("<div>").addClass("view");
-          const cardImg = $("<img>")
-            .attr(
-              "src",
-              "https://image.tmdb.org/t/p/w200/" + sortRating[index].poster_path
-            )
-            .attr("alt", "movie poster")
-            .addClass("card-img-top");
-          cardImgContainer.append(cardImg);
-          const cardBody = $("<div>").addClass(
-            "card-body elegant-color white-text"
-          );
-          const cardTitle = $("<h3>")
-            .addClass("cardTitle")
-            .text(sortRating[index].title);
-          const cardText = $("<p>")
-            .addClass("card-text white-text")
-            .text(sortRating[index].overview);
-          const cardRating = $("<p>")
-            .addClass("card-text white-text")
-            .text("Rating: " + sortRating[index].vote_average + "/10");
-          cardBody.append(cardTitle, cardText, cardRating);
-          createCard.append(cardImgContainer, cardBody);
-          cardContainer.append(createCard);
-          $(".topRated").append(cardContainer);
+          const cardContainer = $('<div>').addClass('col-lg-4 col-md-6')
+          const createCard = $('<div>').addClass('card')
+          const cardImgContainer = $('<div>').addClass('view')
+          const cardImg =$('<img>').attr("src",
+          "https://image.tmdb.org/t/p/w200/" + sortRating[index].poster_path).attr('alt', 'movie poster').addClass('card-img-top')
+          cardImgContainer.append(cardImg)
+          const cardBody = $('<div>').addClass('card-body elegant-color white-text')
+          const cardTitle = $('<h3>').addClass('cardTitle' + [index]).text(sortRating[index].title)
+          movieTitleArr.push(sortRating[index].title)
+          const cardVideo = $('<div>').addClass('cardVideo' + [index] )
+          const cardText = $('<p>').addClass('card-text white-text').text(sortRating[index].overview)
+          const cardRating = $('<p>').addClass('card-text white-text').text('Rating: ' + sortRating[index].vote_average + '/10')
+          cardBody.append(cardTitle, cardText, cardRating)
+          createCard.append(cardImgContainer, cardBody, cardVideo)
+          cardContainer.append(createCard)
+          $('.topRated').append(cardContainer)
         });
+        $.each(movieTitleArr, youtubeCall)
+        
       });
     }
-
+    function youtubeCall (index){
+      const youtubeKey = 'AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA'
+      const searchTerm = $('.cardTitle'+ [index]).text();
+      $.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`, function(response) {
+       
+          const id = response.items[0].id.videoId
+         
+          getVideo(id)
+      })
+      function getVideo(id) {
+      $.get(`https://www.googleapis.com/youtube/v3/videos?part=player&id=` + id + `&key=${youtubeKey}`, function(response) {
+        
+          var word = response.items[0].player.embedHtml .split("")
+          
+          word.splice(38, 0, "https:");
+          
+          var wordJoin = word.join('')
+          const video = $(wordJoin)
+          $(`.cardVideo` + [index]).append(video)
+      })
+      
+      }
+     }
     function getBioData(personID) {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
