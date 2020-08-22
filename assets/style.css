@@ -4,14 +4,11 @@ UI Styling
 
 html,
 body {
-  width: 100%;
-  margin: 0;
-  height: 100%;
+  font-family: "Bree Serif", serif;
 }
 
-p,
-h2 {
-  font-family: "Bree Serif", serif;
+p, h2 {
+  margin: 20px;
 }
 
 .background-image {
@@ -43,7 +40,8 @@ iframe{
   background-color: darkslategrey ;
   max-width: 100%;
   overflow-x: hidden; 
-  position: relative;
+  position: fixed;
+  bottom: 0;
   color: black;
   }
 
