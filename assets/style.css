@@ -37,3 +37,13 @@ h2 {
 iframe{
   width: 100%;
 }
+
+
+#site-footer {
+  background-color: darkslategrey ;
+  max-width: 100%;
+  overflow-x: hidden; 
+  position: relative;
+  color: black;
+  }
+
