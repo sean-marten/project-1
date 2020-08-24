@@ -44,7 +44,7 @@ $(document).ready(function () {
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
-          const cardContainer = $('<div>').addClass('col-lg-4 col-md-6')
+          const cardContainer = $('<div>').addClass('col-lg-4 col-md-6 align-items-stretch')
           const createCard = $('<div>').addClass('card')
           const cardImgContainer = $('<div>').addClass('view')
           const cardImg =$('<img>').attr("src",
