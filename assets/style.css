@@ -7,7 +7,8 @@ body {
   font-family: "Bree Serif", serif;
 }
 
-p, h2 {
+p,
+h2 {
   margin: 20px;
 }
 
@@ -31,17 +32,15 @@ p, h2 {
 .bio {
   margin-top: 20px;
 }
-iframe{
+iframe {
   width: 100%;
 }
 
-
 #site-footer {
-  background-color: darkslategrey ;
+  background-color: darkslategrey;
   max-width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   position: fixed;
   bottom: 0;
   color: black;
-  }
-
+}
