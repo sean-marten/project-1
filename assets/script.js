@@ -1,15 +1,14 @@
 $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
-  let previousSearches = [];
 
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
-    previousSearches.push(personSearch)
     retreiveData();
     $(".input").val("");
-    storeActor();
+    storeActor(personSearch);
+    getActors();
   });
 
   function retreiveData() {
@@ -155,22 +154,28 @@ $(document).ready(function () {
       });
     }
   }
-  // local storage
-  function storeActor() {
-    localStorage.setItem('actor',  JSON.stringify(previousSearches));
+  // setting items to local storage from search input
+  function storeActor(name) {
+   if(localStorage.getItem("actor")){
+    $('.previousSearches').empty()
+      const whatIsLocalStoreg =  JSON.parse(localStorage.getItem("actor"))
+      const stuff = [...whatIsLocalStoreg, name]
+      localStorage.setItem('actor', JSON.stringify(stuff));
+    }else{
+      const firstActor = [name]
+      localStorage.setItem('actor', JSON.stringify(firstActor))}
+    
  }
+// getting items from local storage and displaying them
  function getActors(){
   if (localStorage.getItem("actor")) {
     const searchedActors = JSON.parse(localStorage.getItem("actor"))
-    previousSearches.push(...searchedActors)
-    const previousHeader = $('<h1>').text('Previous Searches')
+    const previousHeader = $('<h1>').text('Previous Searches').css('font-size', '31px')
     $('.previousSearches').append(previousHeader)
-    $.each(previousSearches, function(index){
-      const actorSearch = $('<p>').text(previousSearches[index]).css('text-transform', 'capitalize')
-      $('.previousSearches').append(actorSearch)
-    })
-   
-    console.log(actorSearch)
+      $.each(searchedActors, function(index){
+        const actorSearch = $('<p>').text(searchedActors[index]).css('text-transform', 'capitalize')
+        $('.previousSearches').append(actorSearch)
+      })
   }
 }
   getActors()
