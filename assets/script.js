@@ -159,7 +159,7 @@ $(document).ready(function () {
    if(localStorage.getItem("actor")){
     $('.previousSearches').empty()
       const whatIsLocalStoreg =  JSON.parse(localStorage.getItem("actor"))
-      const stuff = [...whatIsLocalStoreg, name]
+      const stuff = [name, ...whatIsLocalStoreg]
       localStorage.setItem('actor', JSON.stringify(stuff));
     }else{
       const firstActor = [name]
@@ -169,7 +169,7 @@ $(document).ready(function () {
 // getting items from local storage and displaying them
  function getActors(){
   if (localStorage.getItem("actor")) {
-    const searchedActors = JSON.parse(localStorage.getItem("actor"))
+    const searchedActors = JSON.parse(localStorage.getItem("actor")).slice(0,5)
     const previousHeader = $('<h1>').text('Previous Searches').css('font-size', '31px')
     $('.previousSearches').append(previousHeader)
       $.each(searchedActors, function(index){
