@@ -43,7 +43,6 @@ $(document).ready(function () {
             return b.popularity - a.popularity;
           })
           .slice(0, 3);
-        console.log(sortRating);
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
@@ -64,8 +63,8 @@ $(document).ready(function () {
           cardContainer.append(createCard)
           $('.topRated').append(cardContainer)
         });
-        // $.each(movieTitleArr, youtubeCall)
-        
+        $.each(movieTitleArr, youtubeCall)
+        $(".mostPopular").text('Most Popular Movies')
       });
     }
     // function youtubeCall (index){
