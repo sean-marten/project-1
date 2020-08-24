@@ -2,9 +2,13 @@
 UI Styling
 */
 
-html,
-body {
+html{
+  min-height: 100%;
+  position: relative;
   font-family: "Bree Serif", serif;
+}
+body {
+  margin-bottom: 100px;
 }
 
 p, h2 {
@@ -31,17 +35,17 @@ p, h2 {
 .bio {
   margin-top: 20px;
 }
-iframe{
-  width: 100%;
-}
-
 
 #site-footer {
   background-color: darkslategrey ;
   max-width: 100%;
-  overflow-x: hidden; 
-  position: fixed;
+  height: 60px;
+  position: absolute;
+  line-height: 20px;
   bottom: 0;
   color: black;
   }
 
+  .card-body {
+    text-align: "left";
+  }
