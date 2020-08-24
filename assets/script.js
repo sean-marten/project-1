@@ -12,7 +12,14 @@ $(document).ready(function () {
   function retreiveData() {
     //this retreives the person ID so we can use other API searches to get more movies
     let tmdbPersonID = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApi}&language=en-US&query=${personSearch}`;
-
+    //grabbing the num of movies input to pass into .slice below
+    let numOfMovies = $('.numOfMovies option:selected').val()
+    $('.numOfMoviesError').empty()
+    if(numOfMovies === '0'){
+      const numOfMoviesError = $('<h3>').text('Please select # of movies to display.').css({'color': 'blue' , 'text-align': 'center', 'opacity': 'none'})
+      $('.numOfMoviesError').append(numOfMoviesError)
+      return
+    }
     $.get(tmdbPersonID, function (response) {
       const personID = response.results[0].id;
       console.log(personID);
@@ -23,11 +30,10 @@ $(document).ready(function () {
     //uses that person ID to do an in depth search for movies
     function getMovieData(personID) {
       const tmdbMovies = `https://api.themoviedb.org/3/person/${personID}/movie_credits?api_key=${tmdbApi}&language=en-US`;
-
+   
       $.get(tmdbMovies, function (response) {
         const movieArray = response.cast;
         const sortedMovieArray = [];
-        let numOfMovies = $('.numOfMovies option:selected').val()
         $.each(movieArray, function (index) {
           if (
             !movieArray[index].character.includes("Himself") &&
@@ -74,38 +80,38 @@ $(document).ready(function () {
           cardContainer.append(createCard);
           $(".topRated").append(cardContainer);
         });
-        // $.each(movieTitleArr, youtubeCall)
+        $.each(movieTitleArr, youtubeCall)
         $(".mostPopular").text('Most Popular Movies')
       });
     }
-    // function youtubeCall(index) {
-    //   const youtubeKey = "AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA";
-    //   const searchTerm = $(".cardTitle" + [index]).text();
-    //   $.get(
-    //     `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
-    //     function (response) {
-    //       const id = response.items[0].id.videoId;
+    function youtubeCall(index) {
+      const youtubeKey = "AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA";
+      const searchTerm = $(".cardTitle" + [index]).text();
+      $.get(
+        `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
+        function (response) {
+          const id = response.items[0].id.videoId;
 
-    //       getVideo(id);
-    //     }
-    //   );
-    //   function getVideo(id) {
-    //     $.get(
-    //       `https://www.googleapis.com/youtube/v3/videos?part=player&id=` +
-    //         id +
-    //         `&key=${youtubeKey}`,
-    //       function (response) {
-    //         var word = response.items[0].player.embedHtml.split("");
+          getVideo(id);
+        }
+      );
+      function getVideo(id) {
+        $.get(
+          `https://www.googleapis.com/youtube/v3/videos?part=player&id=` +
+            id +
+            `&key=${youtubeKey}`,
+          function (response) {
+            var word = response.items[0].player.embedHtml.split("");
 
-    //         word.splice(38, 0, "https:");
+            word.splice(38, 0, "https:");
 
-    //         var wordJoin = word.join("");
-    //         const video = $(wordJoin);
-    //         $(`.cardVideo` + [index]).append(video);
-    //       }
-    //     );
-    //   }
-    // }
+            var wordJoin = word.join("");
+            const video = $(wordJoin);
+            $(`.cardVideo` + [index]).append(video);
+          }
+        );
+      }
+    }
     function getBioData(personID) {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
