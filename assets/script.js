@@ -27,6 +27,7 @@ $(document).ready(function () {
       $.get(tmdbMovies, function (response) {
         const movieArray = response.cast;
         const sortedMovieArray = [];
+        let numOfMovies = $('.numOfMovies option:selected').val()
         $.each(movieArray, function (index) {
           if (
             !movieArray[index].character.includes("Himself") &&
@@ -39,7 +40,7 @@ $(document).ready(function () {
           .sort((a, b) => {
             return b.popularity - a.popularity;
           })
-          .slice(0, 3);
+          .slice(0, numOfMovies);
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
@@ -73,38 +74,38 @@ $(document).ready(function () {
           cardContainer.append(createCard);
           $(".topRated").append(cardContainer);
         });
-        $.each(movieTitleArr, youtubeCall)
+        // $.each(movieTitleArr, youtubeCall)
         $(".mostPopular").text('Most Popular Movies')
       });
     }
-    function youtubeCall(index) {
-      const youtubeKey = "AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA";
-      const searchTerm = $(".cardTitle" + [index]).text();
-      $.get(
-        `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
-        function (response) {
-          const id = response.items[0].id.videoId;
+    // function youtubeCall(index) {
+    //   const youtubeKey = "AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA";
+    //   const searchTerm = $(".cardTitle" + [index]).text();
+    //   $.get(
+    //     `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
+    //     function (response) {
+    //       const id = response.items[0].id.videoId;
 
-          getVideo(id);
-        }
-      );
-      function getVideo(id) {
-        $.get(
-          `https://www.googleapis.com/youtube/v3/videos?part=player&id=` +
-            id +
-            `&key=${youtubeKey}`,
-          function (response) {
-            var word = response.items[0].player.embedHtml.split("");
+    //       getVideo(id);
+    //     }
+    //   );
+    //   function getVideo(id) {
+    //     $.get(
+    //       `https://www.googleapis.com/youtube/v3/videos?part=player&id=` +
+    //         id +
+    //         `&key=${youtubeKey}`,
+    //       function (response) {
+    //         var word = response.items[0].player.embedHtml.split("");
 
-            word.splice(38, 0, "https:");
+    //         word.splice(38, 0, "https:");
 
-            var wordJoin = word.join("");
-            const video = $(wordJoin);
-            $(`.cardVideo` + [index]).append(video);
-          }
-        );
-      }
-    }
+    //         var wordJoin = word.join("");
+    //         const video = $(wordJoin);
+    //         $(`.cardVideo` + [index]).append(video);
+    //       }
+    //     );
+    //   }
+    // }
     function getBioData(personID) {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
