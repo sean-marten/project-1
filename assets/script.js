@@ -14,6 +14,13 @@ $(document).ready(function () {
     let tmdbPersonID = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApi}&language=en-US&query=${personSearch}`;
 
     $.get(tmdbPersonID, function (response) {
+      if (response.results[0] === undefined) {
+        const errorMsg = $('<p>').text('This actor is not in our database, please search for a different actor.')
+        $('.errorMsg').append(errorMsg)
+        return;
+      } else {
+        $('.errorMsg').text('')
+      }
       const personID = response.results[0].id;
       console.log(personID);
       getMovieData(personID);
