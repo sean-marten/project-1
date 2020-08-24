@@ -2,9 +2,14 @@
 UI Styling
 */
 
-html,
-body {
+html {
+  min-height: 100%;
+  position: relative;
   font-family: "Bree Serif", serif;
+}
+
+body {
+  margin-bottom: 100px;
 }
 
 p,
@@ -37,10 +42,12 @@ iframe {
 }
 
 #site-footer {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  line-height: 20px;
   background-color: darkslategrey;
   max-width: 100%;
-  overflow-x: hidden;
-  position: fixed;
   bottom: 0;
   color: black;
 }
