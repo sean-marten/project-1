@@ -173,11 +173,18 @@ $(document).ready(function () {
     const previousHeader = $('<h1>').text('Previous Searches').css('font-size', '31px')
     $('.previousSearches').append(previousHeader)
       $.each(searchedActors, function(index){
-        const actorSearch = $('<p>').text(searchedActors[index]).css('text-transform', 'capitalize')
+        const actorSearch = $('<p>').append($('<a>').text(searchedActors[index]).css('text-transform', 'capitalize')).addClass('previousActor')
         $('.previousSearches').append(actorSearch)
       })
   }
 }
+//calling get actors here so they load when page loads
   getActors()
+  // can click on previous actors to search for them again
+  $(document).on('click', '.previousActor', function(){
+    personSearch = $(this).text()
+    console.log(personSearch)
+    retreiveData();
+  })
 
 });
