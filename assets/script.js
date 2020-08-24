@@ -2,6 +2,14 @@ $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
 
+  $(window).on('load', function(event) {
+    $('.jQueryEqualHeight-demo').jQueryEqualHeight();
+  });
+
+  $(window).on('resize', function(event) {
+    $('.jQueryEqualHeight-demo').jQueryEqualHeight();
+  });
+  
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
@@ -44,13 +52,13 @@ $(document).ready(function () {
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
-          const cardContainer = $('<div>').addClass('col-lg-4 col-md-6 align-items-stretch')
+          const cardContainer = $('<div>').addClass('col-lg-4 col-md-6  d-flex align-items-stretch')
           const createCard = $('<div>').addClass('card')
           const cardImgContainer = $('<div>').addClass('view')
           const cardImg =$('<img>').attr("src",
           "https://image.tmdb.org/t/p/w200/" + sortRating[index].poster_path).attr('alt', 'movie poster').addClass('card-img-top')
           cardImgContainer.append(cardImg)
-          const cardBody = $('<div>').addClass('card-body elegant-color white-text')
+          const cardBody = $('<div>').addClass('card-body elegant-color white-text flex-fill')
           const cardTitle = $('<h3>').addClass('cardTitle' + [index]).text(sortRating[index].title)
           movieTitleArr.push(sortRating[index].title)
           const cardVideo = $('<div>').addClass('cardVideo' + [index] )
@@ -61,7 +69,7 @@ $(document).ready(function () {
           cardContainer.append(createCard)
           $('.topRated').append(cardContainer)
         });
-        $.each(movieTitleArr, youtubeCall)
+        // $.each(movieTitleArr, youtubeCall)
         
       });
     }
