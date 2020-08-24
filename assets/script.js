@@ -1,12 +1,15 @@
 $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
+  let previousSearches = [];
 
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
+    previousSearches.push(personSearch)
     retreiveData();
     $(".input").val("");
+    storeActor();
   });
 
   function retreiveData() {
@@ -61,33 +64,33 @@ $(document).ready(function () {
           cardContainer.append(createCard)
           $('.topRated').append(cardContainer)
         });
-        $.each(movieTitleArr, youtubeCall)
+        // $.each(movieTitleArr, youtubeCall)
         
       });
     }
-    function youtubeCall (index){
-      const youtubeKey = 'AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA'
-      const searchTerm = $('.cardTitle'+ [index]).text();
-      $.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`, function(response) {
+    // function youtubeCall (index){
+    //   const youtubeKey = 'AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA'
+    //   const searchTerm = $('.cardTitle'+ [index]).text();
+    //   $.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`, function(response) {
        
-          const id = response.items[0].id.videoId
+    //       const id = response.items[0].id.videoId
          
-          getVideo(id)
-      })
-      function getVideo(id) {
-      $.get(`https://www.googleapis.com/youtube/v3/videos?part=player&id=` + id + `&key=${youtubeKey}`, function(response) {
+    //       getVideo(id)
+    //   })
+    //   function getVideo(id) {
+    //   $.get(`https://www.googleapis.com/youtube/v3/videos?part=player&id=` + id + `&key=${youtubeKey}`, function(response) {
         
-          var word = response.items[0].player.embedHtml .split("")
+    //       var word = response.items[0].player.embedHtml .split("")
           
-          word.splice(38, 0, "https:");
+    //       word.splice(38, 0, "https:");
           
-          var wordJoin = word.join('')
-          const video = $(wordJoin)
-          $(`.cardVideo` + [index]).append(video)
-      })
+    //       var wordJoin = word.join('')
+    //       const video = $(wordJoin)
+    //       $(`.cardVideo` + [index]).append(video)
+    //   })
       
-      }
-     }
+    //   }
+    //  }
     function getBioData(personID) {
       const bioData = `https://api.themoviedb.org/3/person/${personID}?api_key=${tmdbApi}`;
       $.get(bioData, function (response) {
@@ -133,4 +136,24 @@ $(document).ready(function () {
       });
     }
   }
+  // local storage
+  function storeActor() {
+    localStorage.setItem('actor',  JSON.stringify(previousSearches));
+ }
+ function getActors(){
+  if (localStorage.getItem("actor")) {
+    const searchedActors = JSON.parse(localStorage.getItem("actor"))
+    previousSearches.push(...searchedActors)
+    const previousHeader = $('<h1>').text('Previous Searches')
+    $('.previousSearches').append(previousHeader)
+    $.each(previousSearches, function(index){
+      const actorSearch = $('<p>').text(previousSearches[index]).css('text-transform', 'capitalize')
+      $('.previousSearches').append(actorSearch)
+    })
+   
+    console.log(actorSearch)
+  }
+}
+  getActors()
+
 });
