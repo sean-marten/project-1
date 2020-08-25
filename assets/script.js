@@ -7,6 +7,8 @@ $(document).ready(function () {
     personSearch = $(".input").val();
     retreiveData();
     $(".input").val("");
+    storeActor(personSearch);
+    getActors();
   });
 
   function retreiveData() {
@@ -159,4 +161,37 @@ $(document).ready(function () {
       });
     }
   }
+  // setting items to local storage from search input
+  function storeActor(name) {
+   if(localStorage.getItem("actor")){
+    $('.previousSearches').empty()
+      const whatIsLocalStoreg =  JSON.parse(localStorage.getItem("actor"))
+      const stuff = [name, ...whatIsLocalStoreg]
+      localStorage.setItem('actor', JSON.stringify(stuff));
+    }else{
+      const firstActor = [name]
+      localStorage.setItem('actor', JSON.stringify(firstActor))}
+    
+ }
+// getting items from local storage and displaying them
+ function getActors(){
+  if (localStorage.getItem("actor")) {
+    const searchedActors = JSON.parse(localStorage.getItem("actor")).slice(0,5)
+    const previousHeader = $('<h1>').text('Previous Searches').css('font-size', '31px')
+    $('.previousSearches').append(previousHeader)
+      $.each(searchedActors, function(index){
+        const actorSearch = $('<p>').append($('<a>').text(searchedActors[index]).css('text-transform', 'capitalize')).addClass('previousActor')
+        $('.previousSearches').append(actorSearch)
+      })
+  }
+}
+//calling get actors here so they load when page loads
+  getActors()
+  // can click on previous actors to search for them again
+  $(document).on('click', '.previousActor', function(){
+    personSearch = $(this).text()
+    console.log(personSearch)
+    retreiveData();
+  })
+
 });
