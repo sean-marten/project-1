@@ -20,7 +20,6 @@ p, h2 {
   height: 100%;
   position: fixed;
   z-index: 0;
-  opacity: 0.4;
 }
 
 .input-btn {
@@ -37,15 +36,21 @@ p, h2 {
 }
 
 #site-footer {
-  background-color: darkslategrey ;
+  background: linear-gradient(to right, #274046, #E6DADA);
   max-width: 100%;
   height: 60px;
   position: absolute;
   line-height: 20px;
   bottom: 0;
-  color: black;
-  }
+  color: whitesmoke;
+  font-weight: bold;
+}
 
-  .card-body {
-    text-align: "left";
-  }
+.card-body {
+  text-align: "left";
+  background: linear-gradient(to right, #757f9a, #d7dde8);
+}
+.navbar{
+  background: linear-gradient(to right, #bbd2c5, #536976, #292e49); 
+  font-weight: bold;
+}
