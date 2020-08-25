@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
-  
+
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
@@ -15,12 +15,14 @@ $(document).ready(function () {
     //this retreives the person ID so we can use other API searches to get more movies
     let tmdbPersonID = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApi}&language=en-US&query=${personSearch}`;
     //grabbing the num of movies input to pass into .slice below
-    let numOfMovies = $('.numOfMovies option:selected').val()
-    $('.numOfMoviesError').empty()
-    if(numOfMovies === '0'){
-      const numOfMoviesError = $('<h3>').text('Please select # of movies to display.').css({'color': 'blue' , 'text-align': 'center', 'opacity': 'none'})
-      $('.numOfMoviesError').append(numOfMoviesError)
-      return
+    let numOfMovies = $(".numOfMovies option:selected").val();
+    $(".numOfMoviesError").empty();
+    if (numOfMovies === "0") {
+      const numOfMoviesError = $("<h3>")
+        .text("Please select # of movies to display.")
+        .css({ color: "blue", "text-align": "center", opacity: "none" });
+      $(".numOfMoviesError").append(numOfMoviesError);
+      return;
     }
     $.get(tmdbPersonID, function (response) {
       const personID = response.results[0].id;
@@ -32,7 +34,7 @@ $(document).ready(function () {
     //uses that person ID to do an in depth search for movies
     function getMovieData(personID) {
       const tmdbMovies = `https://api.themoviedb.org/3/person/${personID}/movie_credits?api_key=${tmdbApi}&language=en-US`;
-   
+
       $.get(tmdbMovies, function (response) {
         const movieArray = response.cast;
         const sortedMovieArray = [];
@@ -52,7 +54,9 @@ $(document).ready(function () {
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
-          const cardContainer = $("<div>").addClass("col-lg-4 col-md-6 d-flex align-items-stretch");
+          const cardContainer = $("<div>").addClass(
+            "col-lg-4 col-md-6 d-flex align-items-stretch"
+          );
           const createCard = $("<div>").addClass("card");
           const cardImgContainer = $("<div>").addClass("view");
           const cardImg = $("<img>")
@@ -154,41 +158,50 @@ $(document).ready(function () {
           actorBirthplace,
           actorKnownFor
         );
-       
       });
     }
   }
   // setting items to local storage from search input
   function storeActor(name) {
-   if(localStorage.getItem("actor")){
-    $('.previousSearches').empty()
-      const whatIsLocalStoreg =  JSON.parse(localStorage.getItem("actor"))
-      const stuff = [name, ...whatIsLocalStoreg]
-      localStorage.setItem('actor', JSON.stringify(stuff));
-    }else{
-      const firstActor = [name]
-      localStorage.setItem('actor', JSON.stringify(firstActor))}
-    
- }
-// getting items from local storage and displaying them
- function getActors(){
-  if (localStorage.getItem("actor")) {
-    const searchedActors = JSON.parse(localStorage.getItem("actor")).slice(0,5)
-    const previousHeader = $('<h1>').text('Previous Searches').css('font-size', '31px')
-    $('.previousSearches').append(previousHeader)
-      $.each(searchedActors, function(index){
-        const actorSearch = $('<p>').append($('<a>').text(searchedActors[index]).css('text-transform', 'capitalize')).addClass('previousActor')
-        $('.previousSearches').append(actorSearch)
-      })
+    if (localStorage.getItem("actor")) {
+      $(".previousSearches").empty();
+      const whatIsLocalStoreg = JSON.parse(localStorage.getItem("actor"));
+      const stuff = [name, ...whatIsLocalStoreg];
+      localStorage.setItem("actor", JSON.stringify(stuff));
+    } else {
+      const firstActor = [name];
+      localStorage.setItem("actor", JSON.stringify(firstActor));
+    }
   }
-}
-//calling get actors here so they load when page loads
-  getActors()
+  // getting items from local storage and displaying them
+  function getActors() {
+    if (localStorage.getItem("actor")) {
+      const searchedActors = JSON.parse(localStorage.getItem("actor")).slice(
+        0,
+        5
+      );
+      const previousHeader = $("<h1>")
+        .text("Previous Searches")
+        .css("font-size", "31px");
+      $(".previousSearches").append(previousHeader);
+      $.each(searchedActors, function (index) {
+        const actorSearch = $("<p>")
+          .append(
+            $("<a>")
+              .text(searchedActors[index])
+              .css("text-transform", "capitalize")
+          )
+          .addClass("previousActor");
+        $(".previousSearches").append(actorSearch);
+      });
+    }
+  }
+  //calling get actors here so they load when page loads
+  getActors();
   // can click on previous actors to search for them again
-  $(document).on('click', '.previousActor', function(){
-    personSearch = $(this).text()
-    console.log(personSearch)
+  $(document).on("click", ".previousActor", function () {
+    personSearch = $(this).text();
+    console.log(personSearch);
     retreiveData();
-  })
-
+  });
 });
