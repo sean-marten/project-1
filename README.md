@@ -6,10 +6,10 @@ This repository contains a customized actor search web app. This app allows the 
 ## Outline of ActorSearch
 This repository has some unique features, which are outlined below:
 1. We leverage two different APIs in order to access information about the desired actore when searched.
-2. Instead of using boring Bootstrap, we have implemented Material Design for Bootstrap, which is an enhanced CSS framework with more developed styling.
-3. A sleek and polished UI with fade-in background colors and an artistic backdrop
+2. Instead of using boring Bootstrap, we have implemented Material Design for Bootstrap, which is an enhanced CSS framework with developed styling.
+3. A sleek and polished UI with fade-in background colors and an artistic backdrop.
 4. Well formatted and commented code that is easy to read.
-5. Repetitive card stacking with unique movie tiles
+5. Repetitive card stacking with unique movie tiles and youtube trailers.
 6. User input validation to notify the user if they haven't input the correct requirements to search.
 
 ## Github links
