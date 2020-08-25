@@ -1,6 +1,4 @@
 # ActorSearch
-This repository contains a unique code quiz. It will test the user's knowledge of JavaScript. This quiz is time and allows users to save their high scores after each attempt.
-
 This repository contains a customized actor search web app. This app allows the user to input an actor's name in order to retrieve biographical information about the actor, as well as their top rated movies (don't worry, we also include a youtube trailer for the movie).
 
 ## Outline of ActorSearch
