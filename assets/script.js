@@ -207,6 +207,7 @@ $(document).ready(function () {
   getActors();
   // can click on previous actors to search for them again
   $(document).on("click", ".previousActor", function () {
+    $(".topRated").empty();
     personSearch = $(this).text();
     console.log(personSearch);
     retreiveData();
