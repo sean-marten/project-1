@@ -25,6 +25,13 @@ $(document).ready(function () {
       return;
     }
     $.get(tmdbPersonID, function (response) {
+      if (response.results[0] === undefined) {
+        const errorMsg = $('<p>').text('This actor is not in our database, please search for a different actor.')
+        $('.errorMsg').append(errorMsg)
+        return;
+      } else {
+        $('.errorMsg').text('')
+      }
       const personID = response.results[0].id;
       console.log(personID);
       getMovieData(personID);
