@@ -82,8 +82,8 @@ $(document).ready(function () {
           cardContainer.append(createCard);
           $(".topRated").append(cardContainer);
         });
-        $.each(movieTitleArr, youtubeCall)
-        $(".mostPopular").text('Most Popular Movies')
+        $.each(movieTitleArr, youtubeCall);
+        $(".mostPopular").text("Most Popular Movies");
       });
     }
     function youtubeCall(index) {
