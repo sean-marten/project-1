@@ -66,7 +66,7 @@ $(document).ready(function () {
         $.each(sortRating, function (index) {
           const cardContainer = $("<div>").addClass(
             "col-lg-4 col-md-6 d-flex align-items-stretch"
-          );
+          ).css("margin-bottom", "40px");
           const createCard = $("<div>").addClass("card");
           const cardImgContainer = $("<div>").addClass("view");
           const cardImg = $("<img>")
