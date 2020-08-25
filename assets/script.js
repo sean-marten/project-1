@@ -96,7 +96,7 @@ $(document).ready(function () {
           cardContainer.append(createCard);
           $(".topRated").append(cardContainer);
         });
-        // $.each(movieTitleArr, youtubeCall);
+        $.each(movieTitleArr, youtubeCall);
         $(".mostPopular").text("Most Popular Movies");
       });
     }
