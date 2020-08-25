@@ -26,6 +26,7 @@ $(document).ready(function () {
     }
     $.get(tmdbPersonID, function (response) {
       if (response.results[0] === undefined) {
+        $('.errorMsg').text('')
         const errorMsg = $('<h3>')
         .text('Error: This actor is not in our database, please search for a different actor.')
         .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
@@ -95,7 +96,7 @@ $(document).ready(function () {
           cardContainer.append(createCard);
           $(".topRated").append(cardContainer);
         });
-        $.each(movieTitleArr, youtubeCall);
+        // $.each(movieTitleArr, youtubeCall);
         $(".mostPopular").text("Most Popular Movies");
       });
     }
