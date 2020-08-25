@@ -2,7 +2,7 @@
 UI Styling
 */
 
-html{
+html {
   min-height: 100%;
   position: relative;
   font-family: "Bree Serif", serif;
@@ -11,7 +11,12 @@ body {
   margin-bottom: 100px;
 }
 
-p, h2 {
+body {
+  margin-bottom: 100px;
+}
+
+p,
+h2 {
   margin: 20px;
 }
 
@@ -36,16 +41,20 @@ p, h2 {
   margin-top: 20px;
 }
 
+iframe {
+  width: 100%;
+}
+
 #site-footer {
-  background-color: darkslategrey ;
-  max-width: 100%;
   height: 60px;
   position: absolute;
   line-height: 20px;
+  background-color: darkslategrey;
+  max-width: 100%;
   bottom: 0;
   color: black;
-  }
+}
 
-  .card-body {
-    text-align: "left";
-  }
+.card-body {
+  text-align: "left";
+}
