@@ -19,14 +19,16 @@ $(document).ready(function () {
     $(".numOfMoviesError").empty();
     if (numOfMovies === "0") {
       const numOfMoviesError = $("<h3>")
-        .text("Please select # of movies to display.")
-        .css({ color: "blue", "text-align": "center", opacity: "none" });
+        .text("Error: Please select # of movies to display.")
+        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
       $(".numOfMoviesError").append(numOfMoviesError);
       return;
     }
     $.get(tmdbPersonID, function (response) {
       if (response.results[0] === undefined) {
-        const errorMsg = $('<p>').text('This actor is not in our database, please search for a different actor.')
+        const errorMsg = $('<h3>')
+        .text('Error: This actor is not in our database, please search for a different actor.')
+        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
         $('.errorMsg').append(errorMsg)
         return;
       } else {
