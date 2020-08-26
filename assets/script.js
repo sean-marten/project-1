@@ -97,7 +97,7 @@ $(document).ready(function () {
           $(".topRated").append(cardContainer);
         });
         $.each(movieTitleArr, youtubeCall);
-        $(".mostPopular").text("Most Popular Movies");
+        // $(".mostPopular").text("Most Popular Movies");
       });
     }
     function youtubeCall(index) {
@@ -145,13 +145,13 @@ $(document).ready(function () {
         const actorName = $("<h4>").text(response.name).addClass("card-title");
         const actorBirthday = $("<p>")
           .text("Birthday: " + response.birthday)
-          .addClass("card-text");
+          .addClass("card-text text-dark");
         const actorBirthplace = $("<p>")
           .text("Birthplace: " + response.place_of_birth)
-          .addClass("card-text");
+          .addClass("card-text text-dark");
         const actorKnownFor = $("<p>")
           .text("Known for: " + response.known_for_department)
-          .addClass("card-text");
+          .addClass("card-text text-dark");
         // the 'w' in the url below indicates the size of the image
         const actorImage = $("<img>")
           .attr(
