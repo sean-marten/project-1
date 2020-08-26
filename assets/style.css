@@ -62,3 +62,12 @@ iframe {
 .previousSearches {
   margin-top: 20px;
 }
+.avatar {
+  text-align: center; /*for centering images inside*/
+}
+.rounded-circle{
+  max-width:200px;
+  max-height:200px;
+  width: auto;
+  height: auto;
+}
