@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
-  
+
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
@@ -20,20 +20,32 @@ $(document).ready(function () {
     if (numOfMovies === "0") {
       const numOfMoviesError = $("<h3>")
         .text("Error: Please select # of movies to display.")
-        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
+        .css({
+          color: "red",
+          "text-align": "center",
+          opacity: "none",
+          "font-weight": "bold",
+        });
       $(".numOfMoviesError").append(numOfMoviesError);
       return;
     }
     $.get(tmdbPersonID, function (response) {
       if (response.results[0] === undefined) {
-        $('.errorMsg').text('')
-        const errorMsg = $('<h3>')
-        .text('Error: This actor is not in our database, please search for a different actor.')
-        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
-        $('.errorMsg').append(errorMsg)
+        $(".errorMsg").text("");
+        const errorMsg = $("<h3>")
+          .text(
+            "Error: This actor is not in our database, please search for a different actor."
+          )
+          .css({
+            color: "red",
+            "text-align": "center",
+            opacity: "none",
+            "font-weight": "bold",
+          });
+        $(".errorMsg").append(errorMsg);
         return;
       } else {
-        $('.errorMsg').text('')
+        $(".errorMsg").text("");
       }
       const personID = response.results[0].id;
       console.log(personID);
@@ -64,9 +76,9 @@ $(document).ready(function () {
         //looping through the sorted movies, creating cards with info
         const movieTitleArr = [];
         $.each(sortRating, function (index) {
-          const cardContainer = $("<div>").addClass(
-            "col-lg-4 col-md-6 d-flex align-items-stretch"
-          ).css("margin-bottom", "40px");
+          const cardContainer = $("<div>")
+            .addClass("col-lg-4 col-md-6 d-flex align-items-stretch")
+            .css("margin-bottom", "40px");
           const createCard = $("<div>").addClass("card");
           const cardImgContainer = $("<div>").addClass("view");
           const cardImg = $("<img>")
@@ -101,7 +113,7 @@ $(document).ready(function () {
       });
     }
     function youtubeCall(index) {
-      const youtubeKey = "AIzaSyCkMmWW0cdcIADI12lPIshG2d0XnMtpEFA";
+      const youtubeKey = "AIzaSyCyqcLOLq1N4IlzkD3UgILKVKKV1e9IzR4";
       const searchTerm = $(".cardTitle" + [index]).text();
       $.get(
         `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
