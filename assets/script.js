@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const tmdbApi = "0adfd846cf8f1168484b5da4e5339d7c";
   let personSearch = "";
-
+  
   $(document).on("click", ".search", function () {
     $(".topRated").empty();
     personSearch = $(".input").val();
@@ -78,7 +78,7 @@ $(document).ready(function () {
             .addClass("card-img-top");
           cardImgContainer.append(cardImg);
           const cardBody = $("<div>").addClass(
-            "card-body elegant-color white-text"
+            "card-body deep-blue-gradient text-dark"
           );
           const cardTitle = $("<h3>")
             .addClass("cardTitle" + [index])
@@ -86,10 +86,10 @@ $(document).ready(function () {
           movieTitleArr.push(sortRating[index].title);
           const cardVideo = $("<div>").addClass("cardVideo" + [index]);
           const cardText = $("<p>")
-            .addClass("card-text white-text")
+            .addClass("card-text text-dark")
             .text(sortRating[index].overview);
           const cardRating = $("<p>")
-            .addClass("card-text white-text")
+            .addClass("card-text text-dark")
             .text("Rating: " + sortRating[index].vote_average + "/10");
           cardBody.append(cardTitle, cardText, cardRating);
           createCard.append(cardImgContainer, cardBody, cardVideo);
