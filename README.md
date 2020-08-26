@@ -1,8 +1,11 @@
 # ActorSearch
+
 This repository contains a customized actor search web app. This app allows the user to input an actor's name in order to retrieve biographical information about the actor, as well as their top rated movies (don't worry, we also include a youtube trailer for the movie).
 
 ## Outline of ActorSearch
+
 This repository has some unique features, which are outlined below:
+
 1. We leverage two different APIs in order to access information about the desired actore when searched.
 2. Instead of using boring Bootstrap, we have implemented Material Design for Bootstrap, which is an enhanced CSS framework with developed styling.
 3. A sleek and polished UI with fade-in background colors and an artistic backdrop.
@@ -22,4 +25,4 @@ This web page consists of a sleek color theme with an artful back drop. At the m
 
 ### ActorSearch in action:
 
-![screenshot]()
+![screenshot](./assets/pictures/actor-search.gif)
