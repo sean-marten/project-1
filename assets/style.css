@@ -24,8 +24,8 @@ h2 {
 }
 
 .input-btn {
-  margin-top: 15px;
   height: 50px !important;
+  width: 100%;
 }
 
 .input {
@@ -58,4 +58,17 @@ iframe {
 .navbar{
   background: linear-gradient(to right, #bbd2c5, #536976, #292e49); 
   font-weight: bold;
+}
+
+.previousSearches {
+  margin-top: 20px;
+}
+.avatar {
+  text-align: center; /*for centering images inside*/
+}
+.rounded-circle{
+  max-width:200px;
+  max-height:200px;
+  width: auto;
+  height: auto;
 }

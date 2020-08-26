@@ -19,14 +19,17 @@ $(document).ready(function () {
     $(".numOfMoviesError").empty();
     if (numOfMovies === "0") {
       const numOfMoviesError = $("<h3>")
-        .text("Please select # of movies to display.")
-        .css({ color: "blue", "text-align": "center", opacity: "none" });
+        .text("Error: Please select # of movies to display.")
+        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
       $(".numOfMoviesError").append(numOfMoviesError);
       return;
     }
     $.get(tmdbPersonID, function (response) {
       if (response.results[0] === undefined) {
-        const errorMsg = $('<p>').text('This actor is not in our database, please search for a different actor.')
+        $('.errorMsg').text('')
+        const errorMsg = $('<h3>')
+        .text('Error: This actor is not in our database, please search for a different actor.')
+        .css({ color: "red", "text-align": "center", opacity: "none", "font-weight": "bold" });
         $('.errorMsg').append(errorMsg)
         return;
       } else {
@@ -63,7 +66,7 @@ $(document).ready(function () {
         $.each(sortRating, function (index) {
           const cardContainer = $("<div>").addClass(
             "col-lg-4 col-md-6 d-flex align-items-stretch"
-          );
+          ).css("margin-bottom", "40px");
           const createCard = $("<div>").addClass("card");
           const cardImgContainer = $("<div>").addClass("view");
           const cardImg = $("<img>")
@@ -207,6 +210,7 @@ $(document).ready(function () {
   getActors();
   // can click on previous actors to search for them again
   $(document).on("click", ".previousActor", function () {
+    $(".topRated").empty();
     personSearch = $(this).text();
     console.log(personSearch);
     retreiveData();
