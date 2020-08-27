@@ -113,7 +113,7 @@ $(document).ready(function () {
       });
     }
     function youtubeCall(index) {
-      const youtubeKey = "AIzaSyCyqcLOLq1N4IlzkD3UgILKVKKV1e9IzR4";
+      const youtubeKey = "AIzaSyBZbcZuo66jOs1JbS-6rmp35rkFd3IPKTs";
       const searchTerm = $(".cardTitle" + [index]).text();
       $.get(
         `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}+trailer&key=${youtubeKey}`,
